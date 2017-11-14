@@ -71,10 +71,10 @@ public class Du1 {
                 vypis(zaokrouhli(r * (Math.toRadians(v)) / m, desetinovac));
             }
         } else if (z == 'L') {
-//            x = r * (Math.toRadians(v)) / m;
-//            y = r * Math.sin(Math.toRadians(u)) / m;
-//            System.out.println("Rovnoběžky " + y);
-//            System.out.println("Poledníky " + x);
+            x = r * (Math.toRadians(v)) / m;
+            y = r * Math.sin(Math.toRadians(u)) / m;
+            System.out.println("Rovnoběžky " + y);
+            System.out.println("Poledníky " + x);
         } else if (z == 'B') {
 //            x = r * (Math.toRadians(v)) / m;
 //            y = 2 * r * Math.tan((Math.toRadians(u)) / 2);
