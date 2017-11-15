@@ -28,10 +28,11 @@ public class Du1 {
         System.out.println("L - Lambertovo");
         System.out.println("B - Braunovo");
         System.out.println("M - Mercatorovo");
+        System.out.println("W - Wetchovo");
 
         System.out.print("Zadejte zobrazení:");
         char z = readChar();
-        if (z == 'A' || z == 'L' || z == 'B' || z == 'M') {
+        if (z == 'A' || z == 'L' || z == 'B' || z == 'M' || z == 'W') {
         } else {
             System.out.println("Zobrazení bylo zadáno špatně.");
             System.exit(0);
@@ -55,47 +56,162 @@ public class Du1 {
             System.out.println("Poloměr Země byl zadán špatně.");
             System.exit(0);
         }
-
-        System.out.println("Byly zadány všechny potřebné parametry. Stiskněte Enter pro výpočet!");
         
-        double desetinovac = 10;
-
         if (z == 'A') {
             System.out.print("Rovnoběžky: ");
             for (int u = -90; u <= 90; u = u + 10) {
-                vypis(zaokrouhli(r * (Math.toRadians(u)) / m, desetinovac));
+                vypis(zaokrouhli(zobrazeniARovnobezky(r, u, m), 10));
             }
             System.out.println();
             System.out.print("Poledníky: ");
             for (int v = -180; v <= 180; v = v + 10) {
-                vypis(zaokrouhli(r * (Math.toRadians(v)) / m, desetinovac));
+                vypis(zaokrouhli(zobrazeniAPoledniky(r, v, m), 10));
             }
         } else if (z == 'L') {
-//            x = r * (Math.toRadians(v)) / m;
-//            y = r * Math.sin(Math.toRadians(u)) / m;
-//            System.out.println("Rovnoběžky " + y);
-//            System.out.println("Poledníky " + x);
+            System.out.print("Rovnoběžky: ");
+            for (int u = -90; u <= 90; u = u + 10) {
+                vypis(zaokrouhli(zobrazeniLRovnobezky(r, u, m), 10));
+            }
+            System.out.println();
+            System.out.print("Poledníky: ");
+            for (int v = -180; v <= 180; v = v + 10) {
+                vypis(zaokrouhli(zobrazeniLPoledniky(r, v, m), 10));
+            }
         } else if (z == 'B') {
-//            x = r * (Math.toRadians(v)) / m;
-//            y = 2 * r * Math.tan((Math.toRadians(u)) / 2);
-//            System.out.println("Rovnoběžky " + y);
-//            System.out.println("Poledníky " + x);
+            System.out.print("Rovnoběžky: ");
+            for (int u = -90; u <= 90; u = u + 10) {
+                vypis(zaokrouhli(zobrazeniBRovnobezky(r, u, m), 10));
+            }
+            System.out.println();
+            System.out.print("Poledníky: ");
+            for (int v = -180; v <= 180; v = v + 10) {
+                vypis(zaokrouhli(zobrazeniBPoledniky(r, v, m), 10));
+            }   
         } else if (z == 'M') {
-//            x = r * (Math.toRadians(v)) / m;
-//            y = r * Math.log(1.0 / Math.tan((Math.toRadians(w)) / 2));
-//            System.out.println("Rovnoběžky " + y);
-//            System.out.println("Poledníky " + x);
-        } else {
-            System.out.println("Vstupní parametry byly zadány špatně!");
+            System.out.print("Rovnoběžky: ");
+            for (int u = -90; u <= 90; u = u + 10) {
+                vypis(zaokrouhli(zobrazeniMRovnobezky(r, u, m), 10));
+            }
+            System.out.println();
+            System.out.print("Poledníky: ");
+            for (int v = -180; v <= 180; v = v + 10) {
+                vypis(zaokrouhli(zobrazeniMPoledniky(r, v, m), 10));
+            }  
+        } else if (z == 'W') {
+            System.out.print("Rovnoběžky: ");
+            for (int u = -90; u <= 90; u = u + 10) {
+                vypis(zaokrouhli(zobrazeniWRovnobezky(r, u, m), 10));
+            }
+            System.out.println();
+            System.out.print("Poledníky: ");
+            for (int v = -180; v <= 180; v = v + 10) {
+                vypis(zaokrouhli(zobrazeniWPoledniky(r, v, m), 10));
+            }
         }
-
-        // TODO code application logic here
+        
+        System.out.println();
+        
+        int u,v;
+        do {
+            System.out.print("Zadejte zeměpisnou šírku: ");
+            u = readInt();
+            if (u <= 90 && u>= -90) {
+                u = u;
+            } else {
+                System.out.println("Zeměpisná šířka byla zadána špatně.");
+                System.exit(0);
+            }
+            
+            System.out.print("Zadejte zeměpisnou délku: ");
+            v = readInt();
+            if (v <= 180 && v>= -180) {
+                v = v;
+            } else {
+                System.out.println("Zeměpisná délka byla zadána špatně.");
+                System.exit(0);
+            }
+            
+            if (z == 'A') {
+                System.out.print("Rovnoběžka: ");
+                vypis(zaokrouhli(zobrazeniARovnobezky(r, u, m), 10));
+                System.out.println();
+                System.out.print("Poledník: ");
+                vypis(zaokrouhli(zobrazeniAPoledniky(r, v, m), 10));
+            } else if (z == 'L') {
+                System.out.print("Rovnoběžka: ");
+                vypis(zaokrouhli(zobrazeniLRovnobezky(r, u, m), 10));
+                System.out.println();
+                System.out.print("Poledník: ");
+                vypis(zaokrouhli(zobrazeniLPoledniky(r, v, m), 10));
+            } else if (z == 'B') {
+                System.out.print("Rovnoběžka: ");
+                vypis(zaokrouhli(zobrazeniBRovnobezky(r, u, m), 10));
+                System.out.println();
+                System.out.print("Poledník: ");
+                vypis(zaokrouhli(zobrazeniBPoledniky(r, v, m), 10));
+            } else if (z == 'M') {
+                System.out.print("Rovnoběžka: ");
+                vypis(zaokrouhli(zobrazeniMRovnobezky(r, u, m), 10));
+                System.out.println();
+                System.out.print("Poledník: ");
+                vypis(zaokrouhli(zobrazeniMPoledniky(r, v, m), 10));
+            } else if (z == 'W') {
+                System.out.print("Rovnoběžka: ");
+                vypis(zaokrouhli(zobrazeniWRovnobezky(r, u, m), 10));
+                System.out.println();
+                System.out.print("Poledník: ");
+                vypis(zaokrouhli(zobrazeniWPoledniky(r, v, m), 10));
+            }
+            System.out.println();
+        } while(u != 0 || v != 0);
     }
+
+    public static double zobrazeniARovnobezky(double r, int u, int m) {
+        return r * (Math.toRadians(u)) / m;
+    }
+    public static double zobrazeniAPoledniky(double r, int v, int m) {
+        return r * (Math.toRadians(v)) / m;
+    }
+    
+        
+    public static double zobrazeniLRovnobezky(double r, int u, int m) {
+        return r * Math.sin(Math.toRadians(u)) / m;
+    }
+    public static double zobrazeniLPoledniky(double r, int v, int m) {
+        return r * (Math.toRadians(v)) / m;
+    }
+    
+    
+    public static double zobrazeniBRovnobezky(double r, int u, int m) {
+        return 2 * r * Math.tan(Math.toRadians(u) / 2) / m;
+    }
+    public static double zobrazeniBPoledniky(double r, int v, int m) {
+        return r * (Math.toRadians(v)) / m;
+    }
+    
+    
+    public static double zobrazeniMRovnobezky(double r, int u, int m) {
+        return r * Math.log(Math.cos((Math.toRadians(90)-Math.toRadians(u))/2)/Math.sin((Math.toRadians(90)-Math.toRadians(u))/2)) / m;
+        
+    }
+    public static double zobrazeniMPoledniky(double r, int v, int m) {
+        return r * (Math.toRadians(v)) / m;
+    }
+    
+    
+    public static double zobrazeniWRovnobezky(double r, int u, int m) {
+        return r * Math.tan(Math.toRadians(u)) / m;
+    }
+    public static double zobrazeniWPoledniky(double r, int v, int m) {
+        return r * (Math.toRadians(v)) / m;
+    }
+    
     
     public static double zaokrouhli(double cislo, double zaokrouhlovac) {
         return Math.round(cislo * zaokrouhlovac) / zaokrouhlovac;
     }
     
+        
     public static void vypis(double cislo) {
         if (cislo > 100 || cislo < -100) {
             System.out.print("- ");
@@ -104,6 +220,7 @@ public class Du1 {
         }
     }
 
+    
     public static int readInt() throws IOException {
         BufferedReader reader;
         reader = new BufferedReader(new InputStreamReader(System.in));
