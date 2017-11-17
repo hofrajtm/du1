@@ -15,6 +15,7 @@ Lze vybírat z následujících válcových tečných zobrazení:
 - Braunovo (B) - x = r * arc λ; y = 2r * tg(φ/2)
 - Mercatorovo (M) - x = r * arc λ; y = r * ln(cotg(δ/2))
 - Wetchovo (W) - x = r * arc λ; y = r * tgφ
+
 Jako parametr 'z' je možné zadat pouze písmeno odpovídající jednomu z pěti výše zmíněných zobrazení. V jiném případě program skončí.
 
 ### Měřítko
@@ -24,6 +25,7 @@ Dalším voleným parametrem je měřítko 'm'. To je možné zadávat v interva
 Posledním voleným parametrem je poloměr Země 'r'. Ten je možné vybírat v intrevalu <0,∞), přičemž při výběru 0 je automaticky nastaven
 poloměr Země na 6371.11 km. Parametr 'r' je zadáván v kilometrech. V jiném případě program skončí.
 
+### Výstup
 Následně program vypíše souřadnice rovnoběžek a poledníků. Tyto souřadnice jsou vypsány v centimetrech se zaorouhlením na milimetry.
 
 Poté je uživatel dotázán na zeměpisnou šířku a zeměpisnou délku, podle které se vypočtou souřadnice tohoto vybraného bodu. Suřadnice jsou
