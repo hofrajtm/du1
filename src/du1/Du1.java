@@ -33,8 +33,7 @@ public class Du1 {
         písmena z nabídky na začátku, v jiném případě je program ukončen.*/
         System.out.print("Zadejte zobrazení:");
         char z = readChar();
-        if (z == 'A' || z == 'L' || z == 'B' || z == 'M' || z == 'W') {
-        } else {
+        if (z != 'A' && z != 'L' && z != 'B' && z != 'M' && z != 'W') {
             System.out.println("Zobrazení bylo zadáno špatně.");
             System.exit(0);
         }
@@ -43,8 +42,7 @@ public class Du1 {
         hodnoty, v případě záporné hodnoty je program ukončen.*/
         System.out.print("Zadejte měřítko:");
         int m = readInt();
-        if (m > 0) {
-        } else {
+        if (m <= 0) {
             System.out.println("Měřítko bylo zadáno špatně.");
             System.exit(0);
         }
@@ -99,7 +97,11 @@ public class Du1 {
         } else if (z == 'M') {
             System.out.print("Rovnoběžky: ");
             for (int u = -90; u <= 90; u = u + 10) {
-                vypis(zaokrouhli(zobrazeniMRovnobezky(r, u, m), 10));
+                if (u == -90 || u == 90) {
+                    vypis();
+                } else {
+                    vypis(zaokrouhli(zobrazeniMRovnobezky(r, u, m), 10));
+                }
             }
             System.out.println();
             System.out.print("Poledníky: ");
@@ -109,9 +111,15 @@ public class Du1 {
         } else if (z == 'W') {
             System.out.print("Rovnoběžky: ");
             for (int u = -90; u <= 90; u = u + 10) {
-                vypis(zaokrouhli(zobrazeniWRovnobezky(r, u, m), 10));
+                if (u == -90 || u == 90) {
+                    vypis();
+                } else {
+                    vypis(zaokrouhli(zobrazeniWRovnobezky(r, u, m), 10));
+                }
             }
+            
             System.out.println();
+            
             System.out.print("Poledníky: ");
             for (int v = -180; v <= 180; v = v + 10) {
                 vypis(zaokrouhli(zobrazeniWPoledniky(r, v, m), 10));
@@ -130,18 +138,14 @@ public class Du1 {
         do {
             System.out.print("Zadejte zeměpisnou šírku: ");
             u = readInt();
-            if (u <= 90 && u>= -90) {
-                u = u;
-            } else {
+            if (u > 90 || u < -90) {
                 System.out.println("Zeměpisná šířka byla zadána špatně.");
                 System.exit(0);
             }
             
             System.out.print("Zadejte zeměpisnou délku: ");
             v = readInt();
-            if (v <= 180 && v>= -180) {
-                v = v;
-            } else {
+            if (v > 90 || v < -90) {
                 System.out.println("Zeměpisná délka byla zadána špatně.");
                 System.exit(0);
             }
@@ -240,13 +244,17 @@ public class Du1 {
     vyšší než 100, respektive nižší než -100, je vypsána pomlčka. V případě
     rovnosti hodnoty 1 000 000 je vypsána věta 'Hodnota není definována'.*/
     public static void vypis(double cislo) {
-        if ((cislo > 100 || cislo < -100) && cislo != 1000000) {
+        if ((cislo > 100 || cislo < -100)) {
             System.out.print("- ");
-        } else if (cislo == 1000000){
-            System.out.print("Hodnota není definována. ");
         } else {
             System.out.print(cislo + " ");
         }
+    }
+    
+    /*Metoda pro výpis nedefinované hodnoty -90°a 90° zeměpisné šířky v případě
+    Mercatorova a Wechova zobrazení.*/
+    public static void vypis() {
+        System.out.print("Hodnota není definována. ");
     }
     
     public static int readInt() throws IOException {
