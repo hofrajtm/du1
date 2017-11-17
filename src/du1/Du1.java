@@ -170,13 +170,21 @@ public class Du1 {
                 vypis(zaokrouhli(zobrazeniBPoledniky(r, v, m), 10));
             } else if (z == 'M') {
                 System.out.print("Rovnoběžka: ");
-                vypis(zaokrouhli(zobrazeniMRovnobezky(r, u, m), 10));
+                if (u == -90 || u == 90) {
+                    vypis();
+                } else {
+                    vypis(zaokrouhli(zobrazeniMRovnobezky(r, u, m), 10));
+                }
                 System.out.println();
                 System.out.print("Poledník: ");
                 vypis(zaokrouhli(zobrazeniMPoledniky(r, v, m), 10));
             } else if (z == 'W') {
                 System.out.print("Rovnoběžka: ");
-                vypis(zaokrouhli(zobrazeniWRovnobezky(r, u, m), 10));
+                if (u == -90 || u == 90) {
+                    vypis();
+                } else {
+                    vypis(zaokrouhli(zobrazeniWRovnobezky(r, u, m), 10));
+                }
                 System.out.println();
                 System.out.print("Poledník: ");
                 vypis(zaokrouhli(zobrazeniWPoledniky(r, v, m), 10));
@@ -212,11 +220,7 @@ public class Du1 {
     /* Metoda pro výpočet rovnoběžek a poledníků jednotlivých Mercatorova
     zobrazení včetně podmínky pro 90° zeměpisné šířky.*/
     public static double zobrazeniMRovnobezky(double r, int u, int m) {
-        if (u == -90 || u == 90) {
-            return 1000000;
-        } else {
             return r * Math.log(Math.tan((Math.toRadians(u)/2)+Math.toRadians(45))) / m;
-        }
     }
     public static double zobrazeniMPoledniky(double r, int v, int m) {
         return r * (Math.toRadians(v)) / m;
@@ -225,11 +229,7 @@ public class Du1 {
     /* Metoda pro výpočet rovnoběžek a poledníků jednotlivých Wetchova
     zobrazení včetně podmínky pro 90° zeměpisné šířky.*/
     public static double zobrazeniWRovnobezky(double r, int u, int m) {
-        if (u == -90 || u == 90) {
-            return 1000000;
-        } else {
-            return r * Math.tan(Math.toRadians(u)) / m;
-        }
+        return r * Math.tan(Math.toRadians(u)) / m;
     }
     public static double zobrazeniWPoledniky(double r, int v, int m) {
         return r * (Math.toRadians(v)) / m;
