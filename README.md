@@ -23,7 +23,7 @@ Dalším voleným parametrem je měřítko 'm'. To je možné zadávat v interva
 
 ### Poloměr Země
 Posledním voleným parametrem je poloměr Země 'r'. Ten je možné vybírat v intrevalu <0,∞), přičemž při výběru 0 je automaticky nastaven
-poloměr Země na 6371.11 km. Parametr 'r' je zadáván v kilometrech. V jiném případě program skončí.
+poloměr Země na 6371.11 km, v jiném případě program skončí. Parametr 'r' je zadáván v kilometrech.
 
 ### Výstup
 Následně program vypíše souřadnice rovnoběžek a poledníků. Tyto souřadnice jsou vypsány v centimetrech se zaorouhlením na milimetry.
